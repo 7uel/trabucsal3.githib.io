@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ucsal</title>
+    <link rel="stylesheet"  href="css/styles.css">
+</head>
+<body>
+
+    <h1 id="yy">Saúde fácil</h1>
+    <h1 id="y">Bem-vindo ao nosso portal dedicado à promoção da saúde e ao bem-estar integral</h1>
+    <p id="y">Reconhecemos que a saúde é o alicerce que sustenta todas as nossas conquistas e alegrias na vida.
+        Aqui, valorizamos a importância de cuidar da saúde como a chave mestra para uma existência plena.
+        Nosso compromisso é oferecer serviços que não apenas abordam as necessidades médicas, mas também capacitam
+        você a adotar hábitos saudáveis de forma holística. Acreditamos que investir na sua saúde é um passo
+        fundamental para desfrutar de uma vida vibrante e significativa.</p>
+
+    <p id="y">Explore nosso site e descubra recursos, informações e serviços projetados para ajudar você a alcançar e
+        manter o equilíbrio em sua jornada de saúde. Estamos aqui para apoiá-lo em cada passo do caminho. Seu
+        bem-estar é nossa prioridade.</p>
+    
+<form id="form">
+    <label for="name" id="xx">Nome:</label>
+    <input type="text" id="name" placeholder="Digite seu nome" required>
+
+    <br>
+
+    <label for="email" id="xx">E-mail:</label>
+    <input type="email" id="email" placeholder="Digite seu e-mail" required>
+
+    <br>
+
+    <label for="password" id="xx">Senha:</label>
+    <input type="password" id="password" placeholder="Digite sua senha" required>
+
+    <br>
+
+    <label for="job" id="xx">Já conhecia a instituiçao?:</label>
+    <select id="job" required>
+        <option value="">Selecione</option>
+        <option value="empregado">Sim</option>
+        <option value="desempregado">Não</option>
+    </select>
+
+    <br>
+
+    <label for="message" id="xx">Mensagem:</label>
+    <textarea id="message" placeholder="Escreva uma mensagem" required></textarea>
+
+    <br>
+
+    <!-- Botão de cadastro -->
+    <button id="botaoCadastrar">Cadastrar</button>
+
+    <!-- Botão para mudar de página -->
+    <button id="botaoMudarPagina">Ir para Outra Página</button>
+</form>
+
+<script>
+    const form = document.querySelector("#form");
+    const nameInput = document.querySelector("#name");
+    const emailInput = document.querySelector("#email");
+    const passwordInput = document.querySelector("#password");
+    const jobSelect = document.querySelector("#job");
+    const messageTextarea = document.querySelector("#message");
+    const botaoCadastrar = document.querySelector("#botaoCadastrar");
+    const botaoMudarPagina = document.querySelector("#botaoMudarPagina");
+
+    // Adiciona um ouvinte de evento para verificar o envio do formulário
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        // Verificar se o nome está vazio
+        if (nameInput.value === "") {
+            alert("Insira seu nome");
+            return;
+        }
+
+        // Verificar se o email é válido
+        if (emailInput.value === "" || !isEmailValid(emailInput.value)) {
+            alert("Insira um email válido");
+            return;
+        }
+
+        // Verificar a senha
+        if (!validatePassword(passwordInput.value, 8)) {
+            alert("A senha precisa ter 8 dígitos");
+            return;
+        }
+
+        // Verificar a situação
+        if (jobSelect.value === "") {
+            alert("Insira sua situação");
+            return;
+        }
+
+        // Verificar a mensagem
+        if (messageTextarea.value === "") {
+            alert("Escreva uma mensagem");
+            return;
+        }
+
+        // Se todas as verificações passarem, agora você pode mudar para outra página
+        window.location.href = 'home.html';
+    });
+
+    // Adiciona um ouvinte de evento para verificar o clique no botão de mudar de página
+    botaoMudarPagina.addEventListener("click", () => {
+        // Faça qualquer ação desejada quando o botão for clicado
+        window.location.href = 'home.html';
+    });
+
+    // Função para validar o email
+    function isEmailValid(email) {
+        const emailRegex = /^[a-z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,}$/;
+        return emailRegex.test(email);
+    }
+
+    // Função para validar a senha
+    function validatePassword(password, minDigits) {
+        return password.length >= minDigits;
+    }
+</script>
+
+</body>
+</html>
+
